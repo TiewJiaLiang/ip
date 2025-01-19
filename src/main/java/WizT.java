@@ -95,7 +95,21 @@ public class WizT {
                                     System.out.println("Now you have "+al.size()+ " in the list.");
                                     System.out.println("-------------------------------------");
                                 }else{
-                                    throw new WizTException("Sorry, I have no idea what this means.. Please enter either todo [desc], mark [number], unmark [number], list, deadline [desc][by date], event [desc][time period] ");
+                                    if(input1.contains("delete")){
+                                        String[]split = input1.split(" ");
+                                        int no = Integer.parseInt(split[1]);
+
+                                        System.out.println("-------------------------------------");
+                                        System.out.println("Noted. I've removed this task:");
+                                        System.out.println(al.get(no-1).toString());
+                                        al.remove(no-1);
+                                        System.out.println("Now you have "+al.size()+ " in the list.");
+                                        System.out.println("-------------------------------------");
+
+                                    }else{
+                                        throw new WizTException("Sorry, I have no idea what this means.. Please enter either todo [desc], mark [number], unmark [number], list, deadline [desc][by date], event [desc][time period], delete [number] ");
+                                    }
+
                                 }
                             }
                         }
