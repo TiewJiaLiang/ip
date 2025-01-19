@@ -13,7 +13,7 @@ public class WizT {
         Scanner sc = new Scanner(System.in);
         String input1;
         ArrayList<Task> al = new ArrayList<>();
-
+        boolean exit = false;
         do {
             input1 = sc.nextLine();
             if(input1.equals("list")){
@@ -107,7 +107,14 @@ public class WizT {
                                         System.out.println("-------------------------------------");
 
                                     }else{
-                                        throw new WizTException("Sorry, I have no idea what this means.. Please enter either todo [desc], mark [number], unmark [number], list, deadline [desc][by date], event [desc][time period], delete [number] ");
+                                        if(input1.equals("bye")){
+                                            System.out.println("Bye. Hope to see you again soon!");
+                                            System.out.println("-------------------------------------");
+                                            exit=true;
+                                        }else{
+                                            throw new WizTException("Sorry, I have no idea what this means.. Please enter either todo [desc], mark [number], unmark [number], list, deadline [desc][by date], event [desc][time period], delete [number] ");
+                                        }
+
                                     }
 
                                 }
@@ -119,10 +126,10 @@ public class WizT {
                 }
             }
 
-        }while(!input1.equals("bye"));
+        }while(!exit);
 
-            System.out.println("Bye. Hope to see you again soon!");
-            System.out.println("-------------------------------------");
+
+
 
 
     }
