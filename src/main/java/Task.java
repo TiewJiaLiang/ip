@@ -19,7 +19,7 @@ public class Task {
         this.isDone = false;
     }
 
-    public String getStatus(){
+    public String toString(){
         return (isDone ? "[X] "+this.description : "[ ] "+this.description);
     }
 }

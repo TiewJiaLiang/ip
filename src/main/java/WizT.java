@@ -17,7 +17,7 @@ public class WizT {
             if(input1.equals("list")){
                 System.out.println("Here are the tasks in your list:");
                 for(int i = 0; i < al.size(); i++){
-                    System.out.println(i+1+"."+al.get(i).getStatus());
+                    System.out.println(i+1+"."+al.get(i).toString());
                 }
             }
             else{
@@ -27,7 +27,7 @@ public class WizT {
                     al.get(no-1).unmarkAsDone();
                     System.out.println("-------------------------------------");
                     System.out.println("Ok, I've marked this task as not done yet:");
-                    System.out.println(al.get(no-1).getStatus());
+                    System.out.println(al.get(no-1).toString());
                     System.out.println("-------------------------------------");
                 }else{
 
@@ -37,16 +37,53 @@ public class WizT {
                         al.get(no-1).markAsDone();
                         System.out.println("-------------------------------------");
                         System.out.println("Nice! I've marked this task as done:");
-                        System.out.println(al.get(no-1).getStatus());
+                        System.out.println(al.get(no-1).toString());
                         System.out.println("-------------------------------------");
-                    }else{
+                    }
+                    else{
 
-                        System.out.println("-------------------------------------");
 
-                        Task t = new Task(input1);
-                        al.add(t);
-                        System.out.println("added: " + input1);
-                        System.out.println("-------------------------------------");
+                        if(input1.contains("todo")){
+                            String substr = input1.substring("todo ".length());
+                            Task t = new Todo(substr);
+                            al.add(t);
+                            System.out.println("-------------------------------------");
+                            System.out.println("Got it. I've added this task:");
+                            System.out.println("[T][ ]"+substr);
+                            System.out.println("Now you have "+al.size()+ " in the list.");
+                            System.out.println("-------------------------------------");
+                        }else{
+                            if(input1.contains("deadline")){
+                                String substr = input1.substring("deadline ".length());
+                                String[] as = substr.split(" /by");
+
+                                Task t = new Deadline(as[0],as[1]);
+                                al.add(t);
+                                System.out.println("-------------------------------------");
+                                System.out.println("Got it. I've added this task:");
+                                System.out.println("[D][ ] "+as[0]+" (by: "+as[1]+")");
+                                System.out.println("Now you have "+al.size()+ " in the list.");
+                                System.out.println("-------------------------------------");
+                            }else{
+                                if(input1.contains("event")){
+
+                                    String substr = input1.substring("event ".length());
+                                    String[] as = substr.split(" /from");
+                                    String[] as2= as[1].split(" /to");
+
+                                    Task t = new Event(as[0]+" (from: " +as2[0]+ " to: "+as2[1]+")");
+                                    al.add(t);
+                                    System.out.println("-------------------------------------");
+                                    System.out.println("Got it. I've added this task:");
+                                    System.out.println("[E][ ] "+as[0]+" (from: " +as2[0]+ " to: "+as2[1]+")");
+                                    System.out.println("Now you have "+al.size()+ " in the list.");
+                                    System.out.println("-------------------------------------");
+                                }else{
+
+                                }
+                            }
+                        }
+
                     }
 
                 }
