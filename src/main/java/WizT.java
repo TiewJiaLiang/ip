@@ -3,7 +3,9 @@ import java.util.Scanner;
 
 
 public class WizT {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws WizTException {
+
+        try{
         System.out.println("-------------------------------------");
         System.out.println("Hello! I'm WizT");
         System.out.println("What can I do for you?");
@@ -23,7 +25,9 @@ public class WizT {
             else{
                 if(input1.contains("unmark")){
                     String[]split = input1.split(" ");
+
                     int no = Integer.parseInt(split[1]);
+
                     al.get(no-1).unmarkAsDone();
                     System.out.println("-------------------------------------");
                     System.out.println("Ok, I've marked this task as not done yet:");
@@ -44,17 +48,26 @@ public class WizT {
 
 
                         if(input1.contains("todo")){
-                            String substr = input1.substring("todo ".length());
-                            Task t = new Todo(substr);
-                            al.add(t);
-                            System.out.println("-------------------------------------");
-                            System.out.println("Got it. I've added this task:");
-                            System.out.println("[T][ ]"+substr);
-                            System.out.println("Now you have "+al.size()+ " in the list.");
-                            System.out.println("-------------------------------------");
+
+                                String substr = input1.substring("todo".length());
+                                if(substr.isEmpty()){
+                                    throw new WizTException("Please enter a description!");
+                                }
+                                Task t = new Todo(substr);
+                                al.add(t);
+                                System.out.println("-------------------------------------");
+                                System.out.println("Got it. I've added this task:");
+                                System.out.println("[T][ ]" + substr);
+                                System.out.println("Now you have " + al.size() + " in the list.");
+                                System.out.println("-------------------------------------");
+
+
                         }else{
                             if(input1.contains("deadline")){
-                                String substr = input1.substring("deadline ".length());
+                                String substr = input1.substring("deadline".length());
+                                if(substr.isEmpty()){
+                                    throw new WizTException("Please enter a deadline value!");
+                                }
                                 String[] as = substr.split(" /by");
 
                                 Task t = new Deadline(as[0],as[1]);
@@ -67,7 +80,10 @@ public class WizT {
                             }else{
                                 if(input1.contains("event")){
 
-                                    String substr = input1.substring("event ".length());
+                                    String substr = input1.substring("event".length());
+                                    if(substr.isEmpty()){
+                                        throw new WizTException("Please enter a time period!");
+                                    }
                                     String[] as = substr.split(" /from");
                                     String[] as2= as[1].split(" /to");
 
@@ -79,7 +95,7 @@ public class WizT {
                                     System.out.println("Now you have "+al.size()+ " in the list.");
                                     System.out.println("-------------------------------------");
                                 }else{
-
+                                    throw new WizTException("Sorry, I have no idea what this means.. Please enter either todo [desc], mark [number], unmark [number], list, deadline [desc][by date], event [desc][time period] ");
                                 }
                             }
                         }
@@ -96,4 +112,12 @@ public class WizT {
 
 
     }
-}
+    catch(WizTException e){
+            System.out.println(e.getMessage());
+
+
+    } catch(IndexOutOfBoundsException e){
+
+            System.out.println("Please enter a Task number!");
+        }
+}}
