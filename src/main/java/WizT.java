@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+//Tiew Jia Liang
+//A0273239Y
 public class WizT {
     public static void main(String[] args) throws WizTException {
 
