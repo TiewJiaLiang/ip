@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -77,13 +79,18 @@ public class WizT {
                                 if(substr.isEmpty()){
                                     throw new WizTException("Please enter a deadline value!");
                                 }
-                                String[] as = substr.split(" /by");
+                                String[] as = substr.split(" /by ");
 
-                                Task t = new Deadline(as[0],as[1]);
+
+                                //format dd/MM/YYYY HHmm
+                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+                                LocalDateTime dt = LocalDateTime.parse(as[1],formatter);
+                                Task t = new Deadline(as[0],dt);
                                 al.add(t);
                                 System.out.println("-------------------------------------");
                                 System.out.println("Got it. I've added this task:");
-                                System.out.println("[D][ ] "+as[0]+" (by: "+as[1]+")");
+                                System.out.println("[D][ ] "+as[0]+" (by: "+dt.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"))+")");
+
                                 System.out.println("Now you have "+al.size()+ " in the list.");
                                 System.out.println("-------------------------------------");
                             }else{
@@ -178,8 +185,11 @@ public class WizT {
                         if(line.contains("by")){
                             line = line.substring(7);
                             String[] as = line.split("\\(by: ");
-
-                            Task t = new Deadline(as[0].trim(),as[1].substring(0,as[1].length()-1));
+                            String[] datetime = as[1].split(" ");
+                            String date = datetime[0];
+                            String time = datetime[1];
+                            LocalDateTime dt = LocalDateTime.parse(date);
+                            Task t = new Deadline(as[0].trim(),dt);
                             al.add(t);
                         }else{
                             Task t = new Todo(line.substring(7));
