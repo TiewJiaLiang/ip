@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package wizt.ui;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -11,7 +12,7 @@ public class Ui {
    }
     public void showWelcome(){
 
-        System.out.println("Hello! I'm WizT");
+        System.out.println("Hello! I'm wizt.ui.WizT");
         System.out.println("What can I do for you?");
 
     }

@@ -1,6 +1,4 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+package wizt.command;
 
 public class ExitCommand extends Command {
 

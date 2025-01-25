@@ -1,3 +1,5 @@
+package wizt.task;
+
 public class Event  extends  Task{
 
     public Event(String description){

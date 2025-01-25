@@ -1,4 +1,4 @@
-# WizT User Guide
+# wizt.ui.WizT User Guide
 
 // Update the title above to match the actual product name
 

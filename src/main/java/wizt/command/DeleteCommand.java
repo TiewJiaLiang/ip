@@ -1,3 +1,8 @@
+package wizt.command;
+
+import wizt.ui.*;
+import wizt.storage.*;
+import wizt.task.*;
 import java.util.ArrayList;
 
 public class DeleteCommand extends Command {

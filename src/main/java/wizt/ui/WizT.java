@@ -1,11 +1,13 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+package wizt.ui;
+
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Scanner;
+import wizt.parser.Parser;
+import wizt.storage.Storage;
+import wizt.task.*;
+import wizt.command.*;
+import wizt.ui.*;
 
 //Tiew Jia Liang
 //A0273239Y 
@@ -61,7 +63,7 @@ public class WizT {
             catch(WizTException e){
                 ui.showError(e.getMessage());
             }catch(IndexOutOfBoundsException e){
-                System.out.println("Please enter a Task number!");
+                System.out.println("Please enter a wizt.task.Task number!");
             }
 
         }
