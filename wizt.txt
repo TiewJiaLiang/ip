@@ -3,3 +3,5 @@
 [T][ ] sleep
 [T][X] sleep
 [T][ ] eat
+[T][ ] borrow book
+[T][ ] return book
