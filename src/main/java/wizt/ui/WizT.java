@@ -63,7 +63,7 @@ public class WizT {
                 c.execute(tasks, ui, storage);
 
                 isExit = c.isExit();
-                if(isExit==true){
+                if(isExit){
                     writeToFile(filename,tasks.getTasksList());
                 }
 
@@ -71,7 +71,7 @@ public class WizT {
             catch(WizTException e){
                 ui.showError(e.getMessage());
             }catch(IndexOutOfBoundsException e){
-                System.out.println("Please enter a wizt.task.Task number!");
+                ui.showError("Please enter a wizt.task.Task number!");
             }
 
         }
@@ -88,6 +88,7 @@ public class WizT {
             FileWriter fw = new FileWriter(filename);
 
             for (Task task : al) {
+
                 fw.write(task.toString());
                 fw.write("\n");
             }

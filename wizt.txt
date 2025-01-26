@@ -1,4 +1,5 @@
 [T][ ] 
 [T][ ] at
 [T][ ] sleep
-[T][ ]  sleep
+[T][X] sleep
+[T][ ] eat
