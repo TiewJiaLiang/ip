@@ -23,7 +23,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Add corresponding task to tasklist based on command
+     * Add corresponding task to tasklist based on command.
      * @param tasks
      * @param ui
      * @param storage
