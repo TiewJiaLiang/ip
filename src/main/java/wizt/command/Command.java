@@ -4,6 +4,10 @@ import wizt.ui.Ui;
 import wizt.ui.WizTException;
 import wizt.storage.Storage;
 import wizt.task.*;
+
+/**
+ *  Represents any commands that user inputs into program
+ */
 public class Command {
    public Command(){
 

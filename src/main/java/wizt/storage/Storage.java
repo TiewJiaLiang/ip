@@ -7,9 +7,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import wizt.task.*;
+/**
+ *  Represents the storage file where the user tasks are stored in hard disk
+ */
 public class Storage {
     private static String filename;
 
+    /**
+     * Create a file if does not exist
+     * @param filename
+     */
     public Storage(String filename) {
         Storage.filename = filename;
         File f = new File(filename);
@@ -24,6 +31,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Load the tasks from file into Arraylist
+     * @return all tasks in the task list
+     * @throws FileNotFoundException
+     */
     public ArrayList<Task> load() throws FileNotFoundException {
 
 
