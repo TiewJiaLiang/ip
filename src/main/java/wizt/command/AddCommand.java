@@ -8,7 +8,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-
+/**
+ *  Represents commands that adds tasks into TasksList
+ */
 public class AddCommand extends Command {
     private String input1;
 
@@ -20,7 +22,13 @@ public class AddCommand extends Command {
         this.input1 = input1;
     }
 
-
+    /**
+     * Add corresponding task to tasklist based on command
+     * @param tasks
+     * @param ui
+     * @param storage
+     * @throws WizTException
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
         ArrayList<Task> al = tasks.getTasksList();

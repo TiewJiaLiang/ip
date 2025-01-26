@@ -5,6 +5,10 @@ import wizt.storage.*;
 import wizt.task.*;
 import java.util.ArrayList;
 
+/**
+ *  Represents commands that adds deletes tasks from TasksList
+ */
+
 public class DeleteCommand extends Command {
     private String input1;
     public DeleteCommand() {
@@ -13,6 +17,13 @@ public class DeleteCommand extends Command {
     public DeleteCommand(String input1) {
         this.input1 = input1;
     }
+
+    /**
+     * Delete the task from tasklist
+     * @param tasks
+     * @param ui
+     * @param storage
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         String[]split = input1.split(" ");

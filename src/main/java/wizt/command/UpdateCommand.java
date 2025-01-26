@@ -5,6 +5,10 @@ import wizt.storage.*;
 import wizt.task.*;
 import java.util.ArrayList;
 
+/**
+ *  Represents commands that update tasks status into TasksList
+ */
+
 public class UpdateCommand extends Command {
     private String input1;
     public UpdateCommand() {
@@ -15,6 +19,12 @@ public class UpdateCommand extends Command {
         this.input1 = input1;
     }
 
+    /**
+     * Identify which update command user has inputted and mark accordingly
+     * @param tasks
+     * @param ui
+     * @param storage
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ArrayList<Task> al = tasks.getTasksList();

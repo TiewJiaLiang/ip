@@ -1,9 +1,15 @@
 package wizt.parser;
 
 import wizt.command.*;
-
+/**
+ *  Represents the different command the application recognises
+ */
 public class Parser {
-
+    /**
+     * Identify which command user has inputted
+     * @param fullCommand
+     * @return the corresponding command type
+     */
     public static Command parse(String fullCommand) {
         if (fullCommand.equals("list")) {
             return new ListCommand();

@@ -10,7 +10,10 @@ import wizt.command.*;
 import wizt.ui.*;
 
 //Tiew Jia Liang
-//A0273239Y 
+//A0273239Y
+/**
+ *  Represents the main progam flow
+ */
 public class WizT {
     private TaskList tasks;
     private Ui ui;
@@ -39,6 +42,11 @@ public class WizT {
 
 
     }
+
+    /**
+     * The main program execution
+     * @throws WizTException
+     */
     public void run() throws WizTException{
         ui.showLine();
         ui.showWelcome();
@@ -68,6 +76,12 @@ public class WizT {
 
         }
     }
+
+    /**
+     * Write to hard disk
+     * @param filename  file name of the tasklist
+     * @param al Arraylist of all the tasks
+     */
     public static void writeToFile(String filename, ArrayList<Task> al) {
 
         try {
