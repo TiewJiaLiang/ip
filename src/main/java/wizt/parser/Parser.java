@@ -40,6 +40,11 @@ public class Parser {
                                         return new ExitCommand();
 
                                     }
+                                    else{
+                                        if(fullCommand.contains("find")){
+                                            return new FindCommand(fullCommand);
+                                        }
+                                    }
 
                                 }
                             }
