@@ -25,12 +25,14 @@ public class ListCommand extends Command {
      * @param storage
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        System.out.println("Here are the tasks in your list:");
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        StringBuilder response = new StringBuilder();
+        response.append("\n Here are the tasks in your list: ");
         ArrayList<Task> al = tasks.getTasksList();
         for (int i = 0; i < al.size(); i++) {
-            System.out.println(i + 1 + "." + al.get(i).toString());
+            response.append("\n" + ( i + 1 ) + "." + al.get(i).toString());
 
         }
+        return response.toString();
     }
 }
