@@ -24,23 +24,24 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
 
         String[]split = input1.split(" ");
+        StringBuilder response = new StringBuilder();
         String item = split[1];
         ArrayList<Task> al = new ArrayList<>();
         al = tasks.getTasksList();
         int count = 1;
-        System.out.println("Here are the matching tasks in your list:");
+        response.append("\n Here are the matching tasks in your list:");
         for (int i = 0; i < al.size(); i++) {
             if (al.get(i).toString().contains(item)) {
-                System.out.println(count + "." + al.get(i).toString());
+                response.append("\n" + count + "." + al.get(i).toString());
                 count++;
             }
         }
         ui.showLine();
 
 
-
+        return response.toString();
     }
 }

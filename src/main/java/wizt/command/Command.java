@@ -17,9 +17,14 @@ public class Command {
 
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
+    /*public void execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
 
+    }*/
+
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
+        return "";
     }
+
     public boolean isExit() {
         return false;
     }

@@ -36,9 +36,9 @@ public class AddCommand extends Command {
      * @throws WizTException
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
         ArrayList<Task> al = tasks.getTasksList();
-
+        StringBuilder response = new StringBuilder();
         if (input1.contains("todo")) {
 
             String substr = input1.substring("todo".length());
@@ -47,11 +47,11 @@ public class AddCommand extends Command {
             }
             Task t = new Todo(substr);
             al.add(t);
-            System.out.println("-------------------------------------");
-            System.out.println("Got it. I've added this task:");
-            System.out.println("[T][ ]" + substr);
-            System.out.println("Now you have " + al.size() + " in the list.");
-            System.out.println("-------------------------------------");
+            response.append("\n -------------------------------------")
+                    .append("\n Got it. I've added this task:")
+                    .append("\n [T][ ]" + substr)
+                    .append("\nNow you have " + al.size() + " in the list.")
+                    .append("\n -------------------------------------");
 
 
         } else if (input1.contains("deadline")) {
@@ -67,13 +67,11 @@ public class AddCommand extends Command {
             LocalDateTime dt = LocalDateTime.parse(as[1], formatter);
             Task t = new Deadline(as[0], dt);
             al.add(t);
-            System.out.println("-------------------------------------");
-            System.out.println("Got it. I've added this task:");
-            System.out.println("[D][ ] " + as[0] + " (by: "
-                    + dt.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm")) + ")");
-
-            System.out.println("Now you have " + al.size() + " in the list.");
-            System.out.println("-------------------------------------");
+            response.append("\n -------------------------------------")
+                    .append("\n Got it. I've added this task:")
+                    .append("\n [D][ ] " + as[0] + " (by: " + dt.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm")) + ")")
+                    .append("\n Now you have " + al.size() + " in the list.")
+                    .append("\n -------------------------------------");
         } else {
             if (input1.contains("event")) {
 
@@ -86,13 +84,14 @@ public class AddCommand extends Command {
 
                 Task t = new Event(as[0] + " (from: " + as2[0] + " to: " + as2[1] + ")");
                 al.add(t);
-                System.out.println("-------------------------------------");
-                System.out.println("Got it. I've added this task:");
-                System.out.println("[E][ ] " + as[0] + " (from: " + as2[0] + " to: " + as2[1] + ")");
-                System.out.println("Now you have " + al.size() + " in the list.");
-                System.out.println("-------------------------------------");
+                response.append("\n -------------------------------------")
+                        .append("\n Got it. I've added this task:")
+                        .append("\n [E][ ] " + as[0] + " (from: " + as2[0] + " to: " + as2[1] + ")")
+                        .append("\n Now you have " + al.size() + " in the list.")
+                        .append("\n -------------------------------------");
             }
         }
+        return response.toString();
     }
 
 }

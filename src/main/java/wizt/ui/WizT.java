@@ -60,7 +60,8 @@ public class WizT {
         while (!isExit) {
 
             try {
-                String fullCommand = ui.readCommand();
+                 String fullCommand = ui.readCommand();
+               // getResponse(fullCommand);
 
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
@@ -108,4 +109,9 @@ public class WizT {
     }
 
 
+    public String getResponse(String fullCommand) throws WizTException {
+        Command c = Parser.parse(fullCommand);
+        return c.execute(tasks, ui, storage);
+
+    }
 }

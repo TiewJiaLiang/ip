@@ -29,30 +29,32 @@ public class UpdateCommand extends Command {
      * @param storage
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ArrayList<Task> al = tasks.getTasksList();
+        StringBuilder response = new StringBuilder();
         if (input1.contains("unmark")) {
             String[]split = input1.split(" ");
 
             int no = Integer.parseInt(split[1]);
 
             al.get(no - 1).unmarkAsDone();
-            System.out.println("-------------------------------------");
-            System.out.println("Ok, I've marked this task as not done yet:");
-            System.out.println(al.get(no - 1).toString());
-            System.out.println("-------------------------------------");
+            response.append("-------------------------------------")
+                    .append("Ok, I've marked this task as not done yet:")
+                    .append(al.get(no - 1).toString())
+                    .append("-------------------------------------");
         } else {
 
             if (input1.contains("mark")) {
                 String[]split = input1.split(" ");
                 int no = Integer.parseInt(split[1]);
                 al.get(no - 1).markAsDone();
-                System.out.println("-------------------------------------");
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println(al.get(no - 1).toString());
-                System.out.println("-------------------------------------");
+                response.append("\n -------------------------------------")
+                        .append("\n Nice! I've marked this task as done:")
+                        .append(al.get(no - 1).toString())
+                        .append("\n -------------------------------------");
             }
 
         }
+        return response.toString();
     }
 }
