@@ -1,19 +1,22 @@
 package wizt.command;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import wizt.task.Task;
 import wizt.task.Todo;
 import wizt.ui.WizTException;
 
 
-import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class AddCommandTest {
     @Test
-    public void EmptyToDoDescription(){
+    public void emptyToDoDescription() {
 
 
         String input1 = "todo";

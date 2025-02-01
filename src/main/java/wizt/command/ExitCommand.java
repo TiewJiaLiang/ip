@@ -1,9 +1,11 @@
 package wizt.command;
 
+
+/**
+ *  Represents commands that exit from program
+ */
 public class ExitCommand extends Command {
-    /**
-     *  Represents commands that exit from program
-     */
+
     public ExitCommand() {
         super();
     }

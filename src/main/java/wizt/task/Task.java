@@ -1,6 +1,6 @@
 package wizt.task;
 
-import java.util.ArrayList;
+
 /**
  *  Represents the Task a user can create
  */
@@ -8,6 +8,10 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Represents a Constructor that takes in description
+     * @param description
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -21,22 +25,21 @@ public class Task {
     /**
      * mark task as done
      */
-    public void markAsDone(){
+    public void markAsDone() {
         this.isDone = true;
     }
 
     /**
      * mark task as undone
      */
-    public void unmarkAsDone(){
+    public void unmarkAsDone() {
         this.isDone = false;
     }
 
     /**
-     *
      * @return task in a specified format
      */
-    public String toString(){
-        return (isDone ? "[X] "+this.description.trim() : "[ ] "+this.description.trim());
+    public String toString() {
+        return (isDone ? "[X] " + this.description.trim() : "[ ] " + this.description.trim());
     }
 }

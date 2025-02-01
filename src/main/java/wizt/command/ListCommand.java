@@ -1,13 +1,18 @@
 package wizt.command;
 
-import wizt.ui.*;
-import wizt.storage.*;
-import wizt.task.*;
 import java.util.ArrayList;
+
+import wizt.storage.Storage;
+import wizt.task.Task;
+import wizt.task.TaskList;
+import wizt.ui.Ui;
+
+
+
 /**
  *  Represents commands that list items in TasksList
  */
-public class ListCommand extends Command{
+public class ListCommand extends Command {
 
     public ListCommand() {
         super();
@@ -23,8 +28,8 @@ public class ListCommand extends Command{
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         System.out.println("Here are the tasks in your list:");
         ArrayList<Task> al = tasks.getTasksList();
-        for(int i = 0; i < al.size(); i++){
-            System.out.println(i+1+"."+al.get(i).toString());
+        for (int i = 0; i < al.size(); i++) {
+            System.out.println(i + 1 + "." + al.get(i).toString());
 
         }
     }
