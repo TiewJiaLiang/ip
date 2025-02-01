@@ -3,11 +3,14 @@ package wizt.ui;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import wizt.command.Command;
 import wizt.parser.Parser;
 import wizt.storage.Storage;
-import wizt.task.*;
-import wizt.command.*;
-import wizt.ui.*;
+import wizt.task.Task;
+import wizt.task.TaskList;
+
+
 
 //Tiew Jia Liang
 //A0273239Y
@@ -19,21 +22,21 @@ public class WizT {
     private Ui ui;
     private Storage storage;
 
-    public static void main(String[] args) throws WizTException {
-        new WizT("wizt.txt").run();
-
-}
 
 
-
-    public WizT(String filename) throws WizTException{
+    /**
+     * Represents a Constructor that takes in filename
+     * @param filename
+     * @throws WizTException
+     */
+    public WizT(String filename) throws WizTException {
         ui = new Ui();
         storage = new Storage(filename);
-        try{
+        try {
             tasks = new TaskList(storage.load());
 
 
-        }catch(Exception e){
+        } catch (Exception e) {
             ui.showLoadingError(e.getMessage());
 
             tasks = new TaskList();
@@ -47,30 +50,29 @@ public class WizT {
      * The main program execution
      * @throws WizTException
      */
-    public void run() throws WizTException{
+    public void run() throws WizTException {
         ui.showLine();
         ui.showWelcome();
         ui.showLine();
         String filename = "wizt.txt";
 
         boolean isExit = false;
-        while(!isExit){
+        while (!isExit) {
 
-            try{
+            try {
                 String fullCommand = ui.readCommand();
 
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
 
                 isExit = c.isExit();
-                if(isExit){
-                    writeToFile(filename,tasks.getTasksList());
+                if (isExit) {
+                    writeToFile(filename , tasks.getTasksList());
                 }
 
-            }
-            catch(WizTException e){
+            } catch (WizTException e) {
                 ui.showError(e.getMessage());
-            }catch(IndexOutOfBoundsException e){
+            } catch (IndexOutOfBoundsException e) {
                 ui.showError("Please enter a wizt.task.Task number!");
             }
 
@@ -98,6 +100,11 @@ public class WizT {
             System.out.println(e.getMessage());
 
         }
+    }
+
+    public static void main(String[] args) throws WizTException {
+        new WizT("wizt.txt").run();
+
     }
 
 

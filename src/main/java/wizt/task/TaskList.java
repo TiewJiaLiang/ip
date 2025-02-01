@@ -14,10 +14,9 @@ public class TaskList {
     }
 
     /**
-     *
      * @return Arraylist of all tasks in the tasklist
      */
-    public ArrayList<Task> getTasksList(){
+    public ArrayList<Task> getTasksList() {
         return tasks;
     }
 }

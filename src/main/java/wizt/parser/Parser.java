@@ -1,6 +1,13 @@
 package wizt.parser;
 
-import wizt.command.*;
+
+import wizt.command.AddCommand;
+import wizt.command.Command;
+import wizt.command.DeleteCommand;
+import wizt.command.ExitCommand;
+import wizt.command.FindCommand;
+import wizt.command.ListCommand;
+import wizt.command.UpdateCommand;
 /**
  *  Represents the different command the application recognises
  */
@@ -33,15 +40,13 @@ public class Parser {
 
                             } else {
                                 if (fullCommand.contains("delete")) {
-
                                     return new DeleteCommand(fullCommand);
                                 } else {
                                     if (fullCommand.equals("bye")) {
                                         return new ExitCommand();
 
-                                    }
-                                    else{
-                                        if(fullCommand.contains("find")){
+                                    } else {
+                                        if (fullCommand.contains("find")) {
                                             return new FindCommand(fullCommand);
                                         }
                                     }
@@ -57,6 +62,6 @@ public class Parser {
 
 
         }
-    return new Command();
+        return new Command();
     }
 }

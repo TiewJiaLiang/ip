@@ -1,9 +1,13 @@
 package wizt.command;
 
-import wizt.ui.*;
-import wizt.storage.*;
-import wizt.task.*;
 import java.util.ArrayList;
+
+import wizt.storage.Storage;
+import wizt.task.Task;
+import wizt.task.TaskList;
+import wizt.ui.Ui;
+
+
 
 /**
  *  Represents commands that adds deletes tasks from TasksList
@@ -31,10 +35,10 @@ public class DeleteCommand extends Command {
         ArrayList<Task> al = tasks.getTasksList();
         System.out.println("-------------------------------------");
         System.out.println("Noted. I've removed this task:");
-        System.out.println(al.get(no-1).toString());
-        al.remove(no-1);
+        System.out.println(al.get(no - 1).toString());
+        al.remove(no - 1);
 
-        System.out.println("Now you have "+al.size()+ " in the list.");
+        System.out.println("Now you have " + al.size() + " in the list.");
         System.out.println("-------------------------------------");
     }
 }

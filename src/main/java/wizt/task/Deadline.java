@@ -10,13 +10,17 @@ public class Deadline extends Task {
 
     protected LocalDateTime by;
 
+    /**
+     * Represent a Constructor that takes in description and localdatetime
+     * @param description
+     * @param by
+     */
     public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
     }
 
     /**
-     *
      * @return Deadline tasks in a specified format
      */
     @Override

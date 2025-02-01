@@ -1,12 +1,18 @@
 package wizt.command;
 
-import wizt.ui.Ui;
-import wizt.ui.WizTException;
-import wizt.task.*;
-import wizt.storage.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import wizt.storage.Storage;
+import wizt.task.Deadline;
+import wizt.task.Event;
+import wizt.task.Task;
+import wizt.task.TaskList;
+import wizt.task.Todo;
+import wizt.ui.Ui;
+import wizt.ui.WizTException;
+
 
 /**
  *  Represents commands that adds tasks into TasksList
@@ -63,7 +69,8 @@ public class AddCommand extends Command {
             al.add(t);
             System.out.println("-------------------------------------");
             System.out.println("Got it. I've added this task:");
-            System.out.println("[D][ ] " + as[0] + " (by: " + dt.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm")) + ")");
+            System.out.println("[D][ ] " + as[0] + " (by: "
+                    + dt.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm")) + ")");
 
             System.out.println("Now you have " + al.size() + " in the list.");
             System.out.println("-------------------------------------");
