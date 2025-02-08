@@ -16,7 +16,7 @@ public class Main extends Application {
     private WizT wizt = new WizT("wizt.txt");
 
     public Main() throws WizTException {
-    System.out.println("WizT");
+        System.out.println("WizT");
     }
 
     @Override

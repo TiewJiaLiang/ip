@@ -2,7 +2,6 @@ package wizt.ui;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import wizt.command.Command;
 import wizt.parser.Parser;
@@ -18,7 +17,7 @@ import wizt.task.TaskList;
  *  Represents the main progam flow
  */
 public class WizT {
-    private TaskList tasks;
+    private static TaskList tasks;
     private Ui ui;
     private Storage storage;
 
@@ -60,15 +59,14 @@ public class WizT {
         while (!isExit) {
 
             try {
-                 String fullCommand = ui.readCommand();
-               // getResponse(fullCommand);
+                String fullCommand = ui.readCommand();
 
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
 
                 isExit = c.isExit();
                 if (isExit) {
-                    writeToFile(filename , tasks.getTasksList());
+                    //writeToFile(filename , tasks.getTasksList());
                 }
 
             } catch (WizTException e) {
@@ -82,15 +80,13 @@ public class WizT {
 
     /**
      * Write to hard disk
-     * @param filename  file name of the tasklist
-     * @param al Arraylist of all the tasks
      */
-    public static void writeToFile(String filename, ArrayList<Task> al) {
-
+    public static void writeToFile() {
+        String filename = "wizt.txt";
         try {
             FileWriter fw = new FileWriter(filename);
 
-            for (Task task : al) {
+            for (Task task : tasks.getTasksList()) {
 
                 fw.write(task.toString());
                 fw.write("\n");

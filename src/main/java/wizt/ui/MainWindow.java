@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
+
 /**
  * Controller for the main GUI.
  */
@@ -45,6 +46,7 @@ public class MainWindow extends AnchorPane {
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
+    @SuppressWarnings("checkstyle:WhitespaceAround")
     @FXML
     private void handleUserInput() throws WizTException {
         String input = userInput.getText();
@@ -55,12 +57,13 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, wiztImage)
         );
         userInput.clear();
-        if(input.equalsIgnoreCase("bye")){
+        if (input.equalsIgnoreCase("bye")){
+            wizt.writeToFile();
             PauseTransition pause = new PauseTransition(Duration.seconds(2));
             pause.setOnFinished(event -> {
-                Platform.exit();  // Exit the application after 3 seconds
+                Platform.exit();
             });
-            pause.play();  // Start the delay
+            pause.play();
         }
 
     }

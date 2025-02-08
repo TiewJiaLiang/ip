@@ -1,7 +1,4 @@
-[T][ ] 
-[T][ ] at
-[T][ ] sleep
 [T][X] sleep
-[T][ ] eat
+[T][X] eat
 [T][ ] borrow book
 [T][ ] return book
