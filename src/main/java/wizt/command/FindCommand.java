@@ -15,6 +15,7 @@ import wizt.ui.Ui;
 public class FindCommand extends Command {
 
     private String input1;
+
     public FindCommand() {
         super();
     }
@@ -26,6 +27,7 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
 
+<<<<<<< HEAD
         String[]split = input1.split(" ");
         if (split.length < 2) {
             return "Please provide a item to search for!";
@@ -47,6 +49,33 @@ public class FindCommand extends Command {
         if (!isFound) {
             response.append("\n No such item found");
         }
+=======
+        String[] split = input1.split(" ");
+        if (split.length < 2) {
+            return "Please provide an item to search for!";
+        }
+
+        StringBuilder response = new StringBuilder();
+        String item = split[1];
+
+        // Using stream to filter tasks and collect matching ones
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+
+        tasks.getTasksList().stream()
+                .filter(task -> task.toString().contains(item))
+                .forEach(task -> matchingTasks.add(task));
+
+        if (matchingTasks.isEmpty()) {
+            response.append("\n No such item found");
+        } else {
+            response.append("\n Here are the matching tasks in your list:");
+            for (int i = 0; i < matchingTasks.size(); i++) {
+                response.append("\n" + (i + 1) + "." + matchingTasks.get(i).toString());
+            }
+        }
+
+>>>>>>> branch-A-Streams
         return response.toString();
     }
 }
+
