@@ -39,16 +39,16 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
-        ArrayList<Task> al = tasks.getTasksList();
+        ArrayList<Task> tasklists = tasks.getTasksList();
         StringBuilder response = new StringBuilder();
         try {
             if (input.contains("todo")) {
-                executeTodo(al , response);
+                executeTodo(tasklists, response);
             } else if (input.contains("deadline")) {
-                executeDeadline(al , response);
+                executeDeadline(tasklists, response);
             } else {
                 if (input.contains("event")) {
-                    executeEvent(al , response);
+                    executeEvent(tasklists, response);
                 }
             }
         } catch (DateTimeParseException e) {
