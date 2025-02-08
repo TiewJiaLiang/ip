@@ -29,6 +29,9 @@ public class Task {
         this.isDone = true;
     }
 
+    public void update(String newDescription) {
+        this.description = newDescription;
+    }
     /**
      * mark task as undone
      */

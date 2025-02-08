@@ -27,29 +27,6 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
 
-<<<<<<< HEAD
-        String[]split = input1.split(" ");
-        if (split.length < 2) {
-            return "Please provide a item to search for!";
-        }
-        StringBuilder response = new StringBuilder();
-        String item = split[1];
-        ArrayList<Task> tasklists = new ArrayList<>();
-        tasklists = tasks.getTasksList();
-        int count = 1;
-        response.append("\n Here are the matching tasks in your list:");
-        boolean isFound = false;
-        for (Task tasklist : tasklists) {
-            if (tasklist.toString().contains(item)) {
-                response.append("\n" + count + "." + tasklist.toString());
-                count++;
-                isFound = true;
-            }
-        }
-        if (!isFound) {
-            response.append("\n No such item found");
-        }
-=======
         String[] split = input1.split(" ");
         if (split.length < 2) {
             return "Please provide an item to search for!";
@@ -74,8 +51,6 @@ public class FindCommand extends Command {
             }
         }
 
->>>>>>> branch-A-Streams
         return response.toString();
     }
 }
-

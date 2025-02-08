@@ -37,11 +37,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String defaultMessage = "Hello! I am WizT. How may i assist you?";
-<<<<<<< HEAD
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(defaultMessage, wiztImage));
-=======
         dialogContainer.getChildren().add(DialogBox.getWiztDialog(defaultMessage, wiztImage));
->>>>>>> branch-A-CodeQuality
     }
 
     /** Injects the Duke instance */

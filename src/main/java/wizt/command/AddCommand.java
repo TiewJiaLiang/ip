@@ -41,49 +41,6 @@ public class AddCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
         ArrayList<Task> al = tasks.getTasksList();
         StringBuilder response = new StringBuilder();
-<<<<<<< HEAD
-        if (input1.contains("todo")) {
-
-            String substr = input1.substring("todo".length());
-            if (substr.isEmpty()) {
-                throw new WizTException("Please enter a description!");
-            }
-            Task t = new Todo(substr);
-            al.add(t);
-            response.append("\n -------------------------------------")
-                    .append("\n Got it. I've added this task:")
-                    .append("\n [T][ ]" + substr)
-                    .append("\nNow you have " + al.size() + " in the list.")
-                    .append("\n -------------------------------------");
-
-
-        } else if (input1.contains("deadline")) {
-            String substr = input1.substring("deadline".length());
-            if (substr.isEmpty()) {
-                throw new WizTException("Please enter a deadline value!");
-            }
-            String[] as = substr.split(" /by ");
-
-
-            //format dd/MM/YYYY HHmm
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-            LocalDateTime dt = LocalDateTime.parse(as[1], formatter);
-            Task t = new Deadline(as[0], dt);
-            al.add(t);
-            response.append("\n -------------------------------------")
-                    .append("\n Got it. I've added this task:")
-                    .append("\n Got it. I've added this task:").append("\n [D][ ] ").append(as[0]).append(" (by: ")
-                    .append(dt.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm")))
-                    .append(")")
-                    .append("\n Now you have " + al.size() + " in the list.")
-                    .append("\n -------------------------------------");
-        } else {
-            if (input1.contains("event")) {
-
-                String substr = input1.substring("event".length());
-                if (substr.isEmpty()) {
-                    throw new WizTException("Please enter a time period!");
-=======
         try {
             if (input.contains("todo")) {
                 executeTodo(al , response);
@@ -92,7 +49,6 @@ public class AddCommand extends Command {
             } else {
                 if (input.contains("event")) {
                     executeEvent(al , response);
->>>>>>> branch-A-CodeQuality
                 }
             }
         } catch (DateTimeParseException e) {

@@ -33,23 +33,6 @@ public class DeleteCommand extends Command {
         StringBuilder response = new StringBuilder();
         try {
 
-<<<<<<< HEAD
-            String[] split = input1.split(" ");
-            int no = Integer.parseInt(split[1]);
-            ArrayList<Task> al = tasks.getTasksList();
-            assert no > 0 && no <= al.size() : "Error! Please Choose the appropriate number from the task list";
-
-
-            response.append("\n -------------------------------------")
-                    .append("\n Noted. I've removed this task:")
-                    .append(al.get(no - 1).toString());
-            al.remove(no - 1);
-
-            response.append("\n Now you have " + al.size() + " in the list.")
-                    .append("\n -------------------------------------");
-        } catch (AssertionError e) {
-            response.append("Error! Please Choose the appropriate number from the task list");
-=======
             String[] split = input.split(" ");
             if (split.length < 2) {
                 throw new WizTException("Please specify the task number to delete.");
@@ -65,7 +48,6 @@ public class DeleteCommand extends Command {
             response.append("Error! Please Choose the appropriate number from the task list");
         } catch (WizTException e) {
             response.append(e.getMessage());
->>>>>>> branch-A-CodeQuality
         }
         return response.toString();
     }
