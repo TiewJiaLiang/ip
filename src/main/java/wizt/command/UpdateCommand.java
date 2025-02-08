@@ -30,30 +30,38 @@ public class UpdateCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        ArrayList<Task> al = tasks.getTasksList();
         StringBuilder response = new StringBuilder();
-        if (input1.contains("unmark")) {
-            String[]split = input1.split(" ");
+        try {
 
-            int no = Integer.parseInt(split[1]);
 
-            al.get(no - 1).unmarkAsDone();
-            response.append("-------------------------------------")
-                    .append("Ok, I've marked this task as not done yet:")
-                    .append(al.get(no - 1).toString())
-                    .append("-------------------------------------");
-        } else {
+            ArrayList<Task> al = tasks.getTasksList();
+            if (input1.contains("unmark")) {
+                String[] split = input1.split(" ");
 
-            if (input1.contains("mark")) {
-                String[]split = input1.split(" ");
                 int no = Integer.parseInt(split[1]);
-                al.get(no - 1).markAsDone();
-                response.append("\n -------------------------------------")
-                        .append("\n Nice! I've marked this task as done:")
+                assert no > 0 && no <= al.size() : "Error! Please Choose the appropriate number from the task list";
+                al.get(no - 1).unmarkAsDone();
+                response.append("-------------------------------------")
+                        .append("Ok, I've marked this task as not done yet:")
                         .append(al.get(no - 1).toString())
-                        .append("\n -------------------------------------");
+                        .append("-------------------------------------");
+            } else {
+
+                if (input1.contains("mark")) {
+                    String[] split = input1.split(" ");
+                    int no = Integer.parseInt(split[1]);
+                    assert no > 0 && no <= al.size() : "Error! Please Choose the appropriate number from the task list";
+                    al.get(no - 1).markAsDone();
+                    response.append("\n -------------------------------------")
+                            .append("\n Nice! I've marked this task as done:")
+                            .append(al.get(no - 1).toString())
+                            .append("\n -------------------------------------");
+                }
+
             }
 
+        } catch (AssertionError e) {
+            response.append("Error! Please Choose the appropriate number from the task list");
         }
         return response.toString();
     }

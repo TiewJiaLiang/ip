@@ -68,8 +68,9 @@ public class AddCommand extends Command {
             Task t = new Deadline(as[0], dt);
             al.add(t);
             response.append("\n -------------------------------------")
-                    .append("\n Got it. I've added this task:")
-                    .append("\n [D][ ] " + as[0] + " (by: " + dt.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm")) + ")")
+                    .append("\n Got it. I've added this task:").append("\n [D][ ] ").append(as[0]).append(" (by: ")
+                    .append(dt.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm")))
+                    .append(")")
                     .append("\n Now you have " + al.size() + " in the list.")
                     .append("\n -------------------------------------");
         } else {
