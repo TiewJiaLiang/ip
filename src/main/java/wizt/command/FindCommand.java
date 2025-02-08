@@ -15,6 +15,7 @@ import wizt.ui.Ui;
 public class FindCommand extends Command {
 
     private String input1;
+
     public FindCommand() {
         super();
     }
@@ -26,22 +27,31 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
 
-        String[]split = input1.split(" ");
+        String[] split = input1.split(" ");
+        if (split.length < 2) {
+            return "Please provide an item to search for!";
+        }
+
         StringBuilder response = new StringBuilder();
         String item = split[1];
-        ArrayList<Task> al = new ArrayList<>();
-        al = tasks.getTasksList();
-        int count = 1;
-        response.append("\n Here are the matching tasks in your list:");
-        for (int i = 0; i < al.size(); i++) {
-            if (al.get(i).toString().contains(item)) {
-                response.append("\n" + count + "." + al.get(i).toString());
-                count++;
+
+        // Using stream to filter tasks and collect matching ones
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+
+        tasks.getTasksList().stream()
+                .filter(task -> task.toString().contains(item))
+                .forEach(task -> matchingTasks.add(task));
+
+        if (matchingTasks.isEmpty()) {
+            response.append("\n No such item found");
+        } else {
+            response.append("\n Here are the matching tasks in your list:");
+            for (int i = 0; i < matchingTasks.size(); i++) {
+                response.append("\n" + (i + 1) + "." + matchingTasks.get(i).toString());
             }
         }
-        ui.showLine();
-
 
         return response.toString();
     }
 }
+
