@@ -63,7 +63,6 @@ public class WizT {
 
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
-
                 isExit = c.isExit();
                 if (isExit) {
                     //writeToFile(filename , tasks.getTasksList());
@@ -85,9 +84,7 @@ public class WizT {
         String filename = "wizt.txt";
         try {
             FileWriter fw = new FileWriter(filename);
-
             for (Task task : tasks.getTasksList()) {
-
                 fw.write(task.toString());
                 fw.write("\n");
             }
@@ -95,19 +92,23 @@ public class WizT {
             fw.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-
         }
     }
 
-    public static void main(String[] args) throws WizTException {
-        new WizT("wizt.txt").run();
+    public static void main(String[] args) {
+        //new WizT("wizt.txt").run();
 
     }
 
 
+    /**
+     * Retrieve the response for a command.
+     * @param fullCommand The full command entered by the user.
+     * @return The response message.
+     * @throws WizTException if an error occurs during command execution.
+     */
     public String getResponse(String fullCommand) throws WizTException {
         Command c = Parser.parse(fullCommand);
         return c.execute(tasks, ui, storage);
-
     }
 }

@@ -27,21 +27,26 @@ public class FindCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
 
         String[]split = input1.split(" ");
+        if (split.length < 2) {
+            return "Please provide a item to search for!";
+        }
         StringBuilder response = new StringBuilder();
         String item = split[1];
-        ArrayList<Task> al = new ArrayList<>();
-        al = tasks.getTasksList();
+        ArrayList<Task> tasklists = new ArrayList<>();
+        tasklists = tasks.getTasksList();
         int count = 1;
         response.append("\n Here are the matching tasks in your list:");
-        for (int i = 0; i < al.size(); i++) {
-            if (al.get(i).toString().contains(item)) {
-                response.append("\n" + count + "." + al.get(i).toString());
+        boolean isFound = false;
+        for (Task tasklist : tasklists) {
+            if (tasklist.toString().contains(item)) {
+                response.append("\n" + count + "." + tasklist.toString());
                 count++;
+                isFound = true;
             }
         }
-        ui.showLine();
-
-
+        if (!isFound) {
+            response.append("\n No such item found");
+        }
         return response.toString();
     }
 }

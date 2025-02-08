@@ -13,13 +13,14 @@ import wizt.ui.Ui;
  */
 
 public class UpdateCommand extends Command {
-    private String input1;
+    private String input;
+    private String assertMessage = "\n Invalid task number! Please choose a valid number from the task list.";
     public UpdateCommand() {
         super();
     }
 
     public UpdateCommand(String input1) {
-        this.input1 = input1;
+        this.input = input1;
     }
 
     /**
@@ -30,30 +31,35 @@ public class UpdateCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        ArrayList<Task> al = tasks.getTasksList();
         StringBuilder response = new StringBuilder();
-        if (input1.contains("unmark")) {
-            String[]split = input1.split(" ");
-
-            int no = Integer.parseInt(split[1]);
-
-            al.get(no - 1).unmarkAsDone();
-            response.append("-------------------------------------")
-                    .append("Ok, I've marked this task as not done yet:")
-                    .append(al.get(no - 1).toString())
-                    .append("-------------------------------------");
-        } else {
-
-            if (input1.contains("mark")) {
-                String[]split = input1.split(" ");
+        try {
+            ArrayList<Task> tasklists = tasks.getTasksList();
+            if (tasklists.isEmpty()) {
+                response.append("\n You have no tasks in your list to update.");
+                return response.toString();
+            }
+            if (input.contains("unmark")) {
+                String[] split = input.split(" ");
                 int no = Integer.parseInt(split[1]);
-                al.get(no - 1).markAsDone();
-                response.append("\n -------------------------------------")
-                        .append("\n Nice! I've marked this task as done:")
-                        .append(al.get(no - 1).toString())
-                        .append("\n -------------------------------------");
+                assert no > 0 && no <= tasklists.size() : assertMessage;
+                tasklists.get(no - 1).unmarkAsDone();
+                response.append("Ok, I've marked this task as not done yet:")
+                        .append(tasklists.get(no - 1).toString());
+
+            } else {
+                if (input.contains("mark")) {
+                    String[] split = input.split(" ");
+                    int no = Integer.parseInt(split[1]);
+                    assert no > 0 && no <= tasklists.size() : assertMessage;
+                    tasklists.get(no - 1).markAsDone();
+                    response.append("\n Nice! I've marked this task as done:")
+                            .append(tasklists.get(no - 1).toString());
+                }
+
             }
 
+        } catch (AssertionError e) {
+            response.append(assertMessage);
         }
         return response.toString();
     }

@@ -30,11 +30,14 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/dwight.jpg"));
     private Image wiztImage = new Image(this.getClass().getResourceAsStream("/images/jim.jpg"));
 
+    /**
+     * Creates a starting conversation
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String defaultMessage = "Hello! I am WizT. How may i assist you?";
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(defaultMessage, wiztImage));  // wizTImage as the default speaker
+        dialogContainer.getChildren().add(DialogBox.getWiztDialog(defaultMessage, wiztImage));
     }
 
     /** Injects the Duke instance */
@@ -52,12 +55,17 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = wizt.getResponse(input);
 
+        if (input.isEmpty()) {
+            return;
+        }
+
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, wiztImage)
+                DialogBox.getWiztDialog(response, wiztImage)
         );
         userInput.clear();
-        if (input.equalsIgnoreCase("bye")){
+        if (input.equalsIgnoreCase("bye")) {
             wizt.writeToFile();
             PauseTransition pause = new PauseTransition(Duration.seconds(2));
             pause.setOnFinished(event -> {

@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private WizT wizt = new WizT("wizt.txt");
+    private final WizT wizt = new WizT("wizt.txt");
 
     public Main() throws WizTException {
         System.out.println("WizT");
@@ -26,10 +26,10 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setWizT(wizt);  // inject the Duke instance
+            fxmlLoader.<MainWindow>getController().setWizT(wizt);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error loading FXML file: " + e.getMessage());
         }
     }
 }
