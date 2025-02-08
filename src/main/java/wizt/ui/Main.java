@@ -26,7 +26,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setWizT(wizt);  // inject the Duke instance
+            fxmlLoader.<MainWindow>getController().setWizT(wizt);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
