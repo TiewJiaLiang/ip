@@ -22,7 +22,7 @@ public class Parser {
             return new ListCommand();
         } else if (fullCommand.equals("bye")) {
             return new ExitCommand();
-        } else if (fullCommand.contains("unmark") || fullCommand.contains("mark")) {
+        } else if (fullCommand.contains("unmark") || fullCommand.contains("mark") || fullCommand.contains("update")) {
             return new UpdateCommand(fullCommand);
         } else if (fullCommand.contains("todo") || fullCommand.contains("deadline") || fullCommand.contains("event")) {
             return new AddCommand(fullCommand);

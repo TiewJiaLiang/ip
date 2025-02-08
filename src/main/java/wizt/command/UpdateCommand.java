@@ -33,32 +33,6 @@ public class UpdateCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         StringBuilder response = new StringBuilder();
         try {
-<<<<<<< HEAD
-
-
-            ArrayList<Task> al = tasks.getTasksList();
-            if (input1.contains("unmark")) {
-                String[] split = input1.split(" ");
-
-                int no = Integer.parseInt(split[1]);
-                assert no > 0 && no <= al.size() : "Error! Please Choose the appropriate number from the task list";
-                al.get(no - 1).unmarkAsDone();
-                response.append("-------------------------------------")
-                        .append("Ok, I've marked this task as not done yet:")
-                        .append(al.get(no - 1).toString())
-                        .append("-------------------------------------");
-            } else {
-
-                if (input1.contains("mark")) {
-                    String[] split = input1.split(" ");
-                    int no = Integer.parseInt(split[1]);
-                    assert no > 0 && no <= al.size() : "Error! Please Choose the appropriate number from the task list";
-                    al.get(no - 1).markAsDone();
-                    response.append("\n -------------------------------------")
-                            .append("\n Nice! I've marked this task as done:")
-                            .append(al.get(no - 1).toString())
-                            .append("\n -------------------------------------");
-=======
             ArrayList<Task> tasklists = tasks.getTasksList();
             if (tasklists.isEmpty()) {
                 response.append("\n You have no tasks in your list to update.");
@@ -80,17 +54,24 @@ public class UpdateCommand extends Command {
                     tasklists.get(no - 1).markAsDone();
                     response.append("\n Nice! I've marked this task as done:")
                             .append(tasklists.get(no - 1).toString());
->>>>>>> branch-A-CodeQuality
+                } else if (input.contains("update")) {
+                    String[] split = input.split(" ");
+                    if (split.length != 3) {
+                        response.append("\n Please enter a valid task number and description!");
+                        return response.toString();
+                    }
+                    int no = Integer.parseInt(split[1]);
+                    String newDescription = split[2];
+                    assert no > 0 && no <= tasklists.size() : assertMessage;
+                    tasklists.get(no - 1).update(newDescription);
+                    response.append("\n Nice! I've updated this task")
+                            .append(tasklists.get(no - 1).toString());
                 }
 
             }
 
         } catch (AssertionError e) {
-<<<<<<< HEAD
-            response.append("Error! Please Choose the appropriate number from the task list");
-=======
             response.append(assertMessage);
->>>>>>> branch-A-CodeQuality
         }
         return response.toString();
     }
