@@ -13,13 +13,14 @@ import wizt.ui.Ui;
  */
 
 public class UpdateCommand extends Command {
-    private String input1;
+    private String input;
+    private String assertMessage = "\n Invalid task number! Please choose a valid number from the task list.";
     public UpdateCommand() {
         super();
     }
 
     public UpdateCommand(String input1) {
-        this.input1 = input1;
+        this.input = input1;
     }
 
     /**
@@ -32,6 +33,7 @@ public class UpdateCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         StringBuilder response = new StringBuilder();
         try {
+<<<<<<< HEAD
 
 
             ArrayList<Task> al = tasks.getTasksList();
@@ -56,12 +58,39 @@ public class UpdateCommand extends Command {
                             .append("\n Nice! I've marked this task as done:")
                             .append(al.get(no - 1).toString())
                             .append("\n -------------------------------------");
+=======
+            ArrayList<Task> tasklists = tasks.getTasksList();
+            if (tasklists.isEmpty()) {
+                response.append("\n You have no tasks in your list to update.");
+                return response.toString();
+            }
+            if (input.contains("unmark")) {
+                String[] split = input.split(" ");
+                int no = Integer.parseInt(split[1]);
+                assert no > 0 && no <= tasklists.size() : assertMessage;
+                tasklists.get(no - 1).unmarkAsDone();
+                response.append("Ok, I've marked this task as not done yet:")
+                        .append(tasklists.get(no - 1).toString());
+
+            } else {
+                if (input.contains("mark")) {
+                    String[] split = input.split(" ");
+                    int no = Integer.parseInt(split[1]);
+                    assert no > 0 && no <= tasklists.size() : assertMessage;
+                    tasklists.get(no - 1).markAsDone();
+                    response.append("\n Nice! I've marked this task as done:")
+                            .append(tasklists.get(no - 1).toString());
+>>>>>>> branch-A-CodeQuality
                 }
 
             }
 
         } catch (AssertionError e) {
+<<<<<<< HEAD
             response.append("Error! Please Choose the appropriate number from the task list");
+=======
+            response.append(assertMessage);
+>>>>>>> branch-A-CodeQuality
         }
         return response.toString();
     }

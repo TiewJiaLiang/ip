@@ -20,17 +20,13 @@ public class ExitCommand extends Command {
      */
     @Override
     public boolean isExit() {
-
-        System.out.println("\n Bye. Hope to see you again soon!");
-        System.out.println("\n -------------------------------------");
         return true;
     }
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         StringBuilder response = new StringBuilder();
-        response.append("\n Bye. Hope to see you again soon!")
-                .append("\n -------------------------------------");
+        response.append("\n Bye. Hope to see you again soon!");
         return response.toString();
     }
 

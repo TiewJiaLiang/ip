@@ -10,16 +10,13 @@ import wizt.ui.WizTException;
 
 
 /**
- *  Represents any commands that user inputs into program
+ *  Represents a base class for commands that users input into the program.
+ *  Subclasses will implement specific commands like AddCommand, ExitCommand, etc.
  */
 public class Command {
     public Command() {
 
     }
-
-    /*public void execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
-
-    }*/
 
     public String execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
         return "";

@@ -33,7 +33,6 @@ public class Storage {
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
-            e.printStackTrace();
         }
     }
 
@@ -43,26 +42,20 @@ public class Storage {
      * @throws FileNotFoundException
      */
     public ArrayList<Task> load() throws FileNotFoundException {
-
-
-        File filename = new File(this.filename);
-        Scanner s = new Scanner(filename);
-        ArrayList<Task> al = new ArrayList<>();
-
-        while (s.hasNext()) {
-            String line = s.nextLine();
-
+        File file = new File(this.filename);
+        Scanner scanner = new Scanner(file);
+        ArrayList<Task> tasklists = new ArrayList<>();
+        while (scanner.hasNext()) {
+            String line = scanner.nextLine();
             if (line.contains("from")) {
                 line = line.substring(7);
-
                 String[] as = line.split("\\(from:");
                 String[] as2 = as[1].split("to:");
-
                 Task t = new Event(as[0].trim() + " (from: " + as2[0].trim() + " to: " + as2[1].trim());
                 if (line.substring(0 , 7).contains("X")) {
                     t.markAsDone();
                 }
-                al.add(t);
+                tasklists.add(t);
             } else {
                 if (line.contains("by")) {
                     line = line.substring(7);
@@ -75,19 +68,19 @@ public class Storage {
                     if (line.substring(0 , 7).contains("X")) {
                         t.markAsDone();
                     }
-                    al.add(t);
+                    tasklists.add(t);
                 } else {
                     Task t = new Todo(line.substring(7).trim());
                     if (line.substring(0 , 7).contains("X")) {
                         t.markAsDone();
                     }
-                    al.add(t);
+                    tasklists.add(t);
                 }
             }
 
         }
 
-        return al;
+        return tasklists;
 
 
     }

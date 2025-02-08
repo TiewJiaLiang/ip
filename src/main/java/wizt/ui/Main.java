@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private WizT wizt = new WizT("wizt.txt");
+    private final WizT wizt = new WizT("wizt.txt");
 
     public Main() throws WizTException {
         System.out.println("WizT");
@@ -29,7 +29,7 @@ public class Main extends Application {
             fxmlLoader.<MainWindow>getController().setWizT(wizt);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error loading FXML file: " + e.getMessage());
         }
     }
 }

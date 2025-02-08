@@ -27,11 +27,14 @@ public class ListCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         StringBuilder response = new StringBuilder();
-        response.append("\n Here are the tasks in your list: ");
-        ArrayList<Task> al = tasks.getTasksList();
-        for (int i = 0; i < al.size(); i++) {
-            response.append("\n" + ( i + 1 ) + "." + al.get(i).toString());
-
+        ArrayList<Task> taskList = tasks.getTasksList();
+        if (taskList.isEmpty()) {
+            response.append("\n You have no tasks in your list.");
+        } else {
+            response.append("\n Here are the tasks in your list: ");
+            for (int i = 0; i < taskList.size(); i++) {
+                response.append("\n" + (i + 1) + ". " + taskList.get(i).toString());
+            }
         }
         return response.toString();
     }
