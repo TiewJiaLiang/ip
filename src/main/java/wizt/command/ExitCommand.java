@@ -26,7 +26,7 @@ public class ExitCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         StringBuilder response = new StringBuilder();
-        response.append("\n Bye. Hope to see you again soon!");
+        response.append("\n Good Day to you Boss! Hope to see you again soon!");
         return response.toString();
     }
 

@@ -36,7 +36,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        String defaultMessage = "Hello! I am WizT. How may i assist you?";
+        String defaultMessage = "Hello! I am WizT. How may i assist you today my dear manager?";
         dialogContainer.getChildren().add(DialogBox.getWiztDialog(defaultMessage, wiztImage));
     }
 

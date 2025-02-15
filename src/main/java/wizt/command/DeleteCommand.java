@@ -35,12 +35,12 @@ public class DeleteCommand extends Command {
 
             String[] split = input.split(" ");
             if (split.length < 2) {
-                throw new WizTException("Please specify the task number to delete.");
+                throw new WizTException("Hmm, Please specify the task number to delete.");
             }
             int no = Integer.parseInt(split[1]);
             ArrayList<Task> tasklists = tasks.getTasksList();
             assert no > 0 && no <= tasklists.size() : "Error! Please Choose the appropriate number from the task list";
-            response.append("\n Noted. I've removed this task: \n")
+            response.append("\n Noted Boss! I've removed this task: \n")
                     .append(tasklists.get(no - 1).toString());
             tasklists.remove(no - 1);
             response.append("\n Now you have " + tasklists.size() + " in the list.");

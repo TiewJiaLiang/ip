@@ -29,7 +29,7 @@ public class FindCommand extends Command {
 
         String[] split = input1.split(" ");
         if (split.length < 2) {
-            return "Please provide an item to search for!";
+            return "Hmm,Please provide an item to search for!";
         }
 
         StringBuilder response = new StringBuilder();
@@ -43,9 +43,9 @@ public class FindCommand extends Command {
                 .forEach(task -> matchingTasks.add(task));
 
         if (matchingTasks.isEmpty()) {
-            response.append("\n No such item found");
+            response.append("\n Hmm,No such item found");
         } else {
-            response.append("\n Here are the matching tasks in your list:");
+            response.append("\n Yes Boss! Here are the matching tasks in your list:");
             for (int i = 0; i < matchingTasks.size(); i++) {
                 response.append("\n" + (i + 1) + "." + matchingTasks.get(i).toString());
             }

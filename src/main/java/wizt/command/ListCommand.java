@@ -29,9 +29,9 @@ public class ListCommand extends Command {
         StringBuilder response = new StringBuilder();
         ArrayList<Task> taskList = tasks.getTasksList();
         if (taskList.isEmpty()) {
-            response.append("\n You have no tasks in your list.");
+            response.append("\n Hmm, You have no tasks in your list.");
         } else {
-            response.append("\n Here are the tasks in your list: ");
+            response.append("\n Roger Boss! Here are the tasks in your list: ");
             for (int i = 0; i < taskList.size(); i++) {
                 response.append("\n" + (i + 1) + ". " + taskList.get(i).toString());
             }
