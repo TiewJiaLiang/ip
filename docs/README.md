@@ -1,4 +1,4 @@
-# wizt.ui.WizT User Guide
+# WizT User Guide
 
 
 ## Screenshot
