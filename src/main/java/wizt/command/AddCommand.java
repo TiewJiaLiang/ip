@@ -61,7 +61,6 @@ public class AddCommand extends Command {
      * Represents a Todo Command
      * @param al
      * @param response
-     * @return
      * @throws WizTException
      */
     public void executeTodo(ArrayList<Task>al, StringBuilder response) throws WizTException {

@@ -23,7 +23,7 @@ public class Command {
      * @param tasks
      * @param ui
      * @param storage
-     * @return
+     * @return a response
      * @throws WizTException
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
