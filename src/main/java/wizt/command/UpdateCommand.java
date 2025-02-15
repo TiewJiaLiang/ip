@@ -40,6 +40,7 @@ public class UpdateCommand extends Command {
             }
             if (input.contains("unmark")) {
                 String[] split = input.split(" ");
+                assert split.length == 2 : assertMessage;
                 int no = Integer.parseInt(split[1]);
                 assert no > 0 && no <= tasklists.size() : assertMessage;
                 tasklists.get(no - 1).unmarkAsDone();
@@ -49,6 +50,7 @@ public class UpdateCommand extends Command {
             } else {
                 if (input.contains("mark")) {
                     String[] split = input.split(" ");
+                    assert split.length == 2 : assertMessage;
                     int no = Integer.parseInt(split[1]);
                     assert no > 0 && no <= tasklists.size() : assertMessage;
                     tasklists.get(no - 1).markAsDone();
