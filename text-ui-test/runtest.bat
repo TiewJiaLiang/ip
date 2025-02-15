@@ -8,7 +8,7 @@ if exist ACTUAL.TXT del ACTUAL.TXT
 
 
 REM compile the code into the bin folder
-javac -cp src -d bin src\main\java\wizt\ui\*.java
+for /R %%f in (..\src\main\java\*.java) do javac -cp %%f -Xlint:none -d ..\src %%f
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1

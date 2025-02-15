@@ -1,8 +1,7 @@
 package wizt.command;
 
 import org.junit.jupiter.api.Test;
-import wizt.task.Task;
-import wizt.task.Todo;
+
 import wizt.ui.WizTException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
