@@ -21,10 +21,13 @@ Now you have 6 tasks in the list
 
 ## Update
 User can update a task that is already in the list, thus it will be more efficient as user do not need to find and delete the task to update it
+
 Example `update 2 run`
+
 This will update and rename the 2nd task of in the list to run 
 
 
 ## Find
 User can search through the list to find a task based on the given keyword. 
+
 Example `find run`
