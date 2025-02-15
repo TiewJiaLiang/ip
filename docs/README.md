@@ -2,7 +2,7 @@
 
 
 ## Screenshot
-![WizT Screenshot](screenshot.png)
+![WizT Screenshot](Ui.png)
 
 ## Introduction
 WizT is an office-themed task management application that allows user to track their current tasks efficiently
