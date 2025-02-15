@@ -2,4 +2,4 @@
 [T][X] eat
 [T][X] borrow book
 [T][ ] return book
-[T][ ] nap
+[T][X] nap
