@@ -73,7 +73,7 @@ public class AddCommand extends Command {
             Task t = new Todo(substr);
             al.add(t);
             response.append("\n Got it Boss! I've added this task:")
-                    .append("\n [T][ ]" + substr).append("\nNow you have " + al.size() + " in the list.");
+                    .append("\n [T][ ]" + substr).append("\nNow you have " + al.size() + " tasks in the list.");
         } catch (WizTException e) {
             response.append("Hmm, Please enter a valid description!");
         }
@@ -101,7 +101,7 @@ public class AddCommand extends Command {
             al.add(t);
             response.append("\n Got it Boss! I've added this task:").append("\n [D][ ] ").append(as[0]).append(" (by: ")
                     .append(dt.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm")))
-                    .append(")").append("\n Now you have " + al.size() + " in the list.");
+                    .append(")").append("\n Now you have " + al.size() + " tasks in the list.");
         } catch (WizTException e) {
             response.append("Hmm, Please enter a valid description!");
         }
@@ -126,7 +126,7 @@ public class AddCommand extends Command {
             al.add(t);
             response.append("\n Got it Boss! I've added this task:")
                     .append("\n [E][ ] " + as[0] + " (from: " + as2[0] + " to: " + as2[1] + ")")
-                    .append("\n Now you have " + al.size() + " in the list.");
+                    .append("\n Now you have " + al.size() + " tasks in the list.");
         } catch (WizTException e) {
             response.append("Hmm, Please enter a valid description!");
         }
