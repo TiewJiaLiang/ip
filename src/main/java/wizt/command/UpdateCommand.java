@@ -41,6 +41,10 @@ public class UpdateCommand extends Command {
             if (input.contains("unmark")) {
                 String[] split = input.split(" ");
                 assert split.length == 2 : assertMessage;
+                if (split.length != 2) {
+                    response.append("\n Please enter a valid task number!");
+                    return response.toString();
+                }
                 int no = Integer.parseInt(split[1]);
                 assert no > 0 && no <= tasklists.size() : assertMessage;
                 if (!(no > 0 && no <= tasklists.size())) {
@@ -54,6 +58,10 @@ public class UpdateCommand extends Command {
                 if (input.contains("mark")) {
                     String[] split = input.split(" ");
                     assert split.length == 2 : assertMessage;
+                    if (split.length != 2) {
+                        response.append("\n Please enter a valid task number!");
+                        return response.toString();
+                    }
                     int no = Integer.parseInt(split[1]);
                     assert no > 0 && no <= tasklists.size() : assertMessage;
                     if (!(no > 0 && no <= tasklists.size())) {
@@ -70,6 +78,7 @@ public class UpdateCommand extends Command {
                     }
                     int no = Integer.parseInt(split[1]);
                     String newDescription = split[2];
+
                     assert no > 0 && no <= tasklists.size() : assertMessage;
                     if (!(no > 0 && no <= tasklists.size())) {
                         throw new AssertionError(assertMessage);
