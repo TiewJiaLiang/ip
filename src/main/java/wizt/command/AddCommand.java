@@ -91,7 +91,10 @@ public class AddCommand extends Command {
                 throw new WizTException("Hmm, Please enter a deadline value!");
             }
             String[] as = substr.split(" /by ");
-
+            System.out.println(as.length);
+            if (as.length == 1) {
+                throw new WizTException("Hmm, Please enter a deadline value!");
+            }
 
             //format dd/MM/YYYY HHmm
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
@@ -119,8 +122,13 @@ public class AddCommand extends Command {
                 throw new WizTException("Hmm, Please enter a time period!");
             }
             String[] as = substr.split(" /from");
+            if (as.length == 1) {
+                throw new WizTException("Hmm, Please enter a time period!");
+            }
             String[] as2 = as[1].split(" /to");
-
+            if (as2.length == 1) {
+                throw new WizTException("Hmm, Please enter a time period!");
+            }
             Task t = new Event(as[0] + " (from: " + as2[0] + " to: " + as2[1] + ")");
             al.add(t);
             response.append("\n Got it Boss! I've added this task:")

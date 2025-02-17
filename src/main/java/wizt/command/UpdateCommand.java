@@ -43,6 +43,9 @@ public class UpdateCommand extends Command {
                 assert split.length == 2 : assertMessage;
                 int no = Integer.parseInt(split[1]);
                 assert no > 0 && no <= tasklists.size() : assertMessage;
+                if (!(no > 0 && no <= tasklists.size())) {
+                    throw new AssertionError(assertMessage);
+                }
                 tasklists.get(no - 1).unmarkAsDone();
                 response.append("Roger Boss, I've marked this task as not done yet:")
                         .append(tasklists.get(no - 1).toString());
@@ -53,6 +56,9 @@ public class UpdateCommand extends Command {
                     assert split.length == 2 : assertMessage;
                     int no = Integer.parseInt(split[1]);
                     assert no > 0 && no <= tasklists.size() : assertMessage;
+                    if (!(no > 0 && no <= tasklists.size())) {
+                        throw new AssertionError(assertMessage);
+                    }
                     tasklists.get(no - 1).markAsDone();
                     response.append("\n Nice! I've marked this task as done:")
                             .append(tasklists.get(no - 1).toString());
@@ -65,6 +71,9 @@ public class UpdateCommand extends Command {
                     int no = Integer.parseInt(split[1]);
                     String newDescription = split[2];
                     assert no > 0 && no <= tasklists.size() : assertMessage;
+                    if (!(no > 0 && no <= tasklists.size())) {
+                        throw new AssertionError(assertMessage);
+                    }
                     tasklists.get(no - 1).update(newDescription);
                     response.append("\n Nice! I've updated this task")
                             .append(tasklists.get(no - 1).toString());
@@ -74,6 +83,7 @@ public class UpdateCommand extends Command {
 
         } catch (AssertionError e) {
             response.append(assertMessage);
+            return response.toString();
         }
         return response.toString();
     }
