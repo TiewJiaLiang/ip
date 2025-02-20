@@ -39,61 +39,101 @@ public class UpdateCommand extends Command {
                 return response.toString();
             }
             if (input.contains("unmark")) {
-                String[] split = input.split(" ");
-                assert split.length == 2 : assertMessage;
-                if (split.length != 2) {
-                    response.append("\n Please enter a valid task number!");
+                boolean isError = parseUnMark(input, response, tasklists);
+                if (isError) {
                     return response.toString();
                 }
-                int no = Integer.parseInt(split[1]);
-                assert no > 0 && no <= tasklists.size() : assertMessage;
-                if (!(no > 0 && no <= tasklists.size())) {
-                    throw new AssertionError(assertMessage);
-                }
-                tasklists.get(no - 1).unmarkAsDone();
-                response.append("Roger Boss, I've marked this task as not done yet:")
-                        .append(tasklists.get(no - 1).toString());
-
             } else {
                 if (input.contains("mark")) {
-                    String[] split = input.split(" ");
-                    assert split.length == 2 : assertMessage;
-                    if (split.length != 2) {
-                        response.append("\n Please enter a valid task number!");
+                    boolean isError = parseMark(input, response, tasklists);
+                    if (isError) {
                         return response.toString();
                     }
-                    int no = Integer.parseInt(split[1]);
-                    assert no > 0 && no <= tasklists.size() : assertMessage;
-                    if (!(no > 0 && no <= tasklists.size())) {
-                        throw new AssertionError(assertMessage);
-                    }
-                    tasklists.get(no - 1).markAsDone();
-                    response.append("\n Nice! I've marked this task as done:")
-                            .append(tasklists.get(no - 1).toString());
                 } else if (input.contains("update")) {
-                    String[] split = input.split(" ");
-                    if (split.length != 3) {
-                        response.append("\n Please enter a valid task number and description!");
+                    boolean isError = parseUpdate(input, response, tasklists);
+                    if (isError) {
                         return response.toString();
                     }
-                    int no = Integer.parseInt(split[1]);
-                    String newDescription = split[2];
-
-                    assert no > 0 && no <= tasklists.size() : assertMessage;
-                    if (!(no > 0 && no <= tasklists.size())) {
-                        throw new AssertionError(assertMessage);
-                    }
-                    tasklists.get(no - 1).update(newDescription);
-                    response.append("\n Nice! I've updated this task")
-                            .append(tasklists.get(no - 1).toString());
                 }
-
             }
-
         } catch (AssertionError e) {
             response.append(assertMessage);
             return response.toString();
         }
         return response.toString();
+    }
+
+    /**
+     * Represents a method to parse unmark
+     * @param input
+     * @param response
+     */
+    public boolean parseUnMark(String input, StringBuilder response, ArrayList<Task> tasklists) {
+        String[] split = input.split(" ");
+        assert split.length == 2 : assertMessage;
+        if (split.length != 2) {
+            response.append("\n Please enter a valid task number!");
+            return true;
+        }
+        int no = Integer.parseInt(split[1]);
+        assert no > 0 && no <= tasklists.size() : assertMessage;
+        if (!(no > 0 && no <= tasklists.size())) {
+            throw new AssertionError(assertMessage);
+        }
+        tasklists.get(no - 1).unmarkAsDone();
+        response.append("Roger Boss, I've marked this task as not done yet:")
+                .append(tasklists.get(no - 1).toString());
+        return false;
+    }
+
+    /**
+     * Represent a method to parse mark
+     * @param input
+     * @param response
+     * @param tasklists
+     * @return
+     */
+    public boolean parseMark(String input, StringBuilder response, ArrayList<Task> tasklists) {
+        String[] split = input.split(" ");
+        assert split.length == 2 : assertMessage;
+        if (split.length != 2) {
+            response.append("\n Please enter a valid task number!");
+            return true;
+        }
+        int no = Integer.parseInt(split[1]);
+        assert no > 0 && no <= tasklists.size() : assertMessage;
+        if (!(no > 0 && no <= tasklists.size())) {
+            throw new AssertionError(assertMessage);
+        }
+        tasklists.get(no - 1).markAsDone();
+        response.append("\n Nice! I've marked this task as done:")
+                .append(tasklists.get(no - 1).toString());
+        return false;
+    }
+
+    /**
+     * Represents a method to parse updates
+     * @param input
+     * @param response
+     * @param tasklists
+     * @return
+     */
+    public boolean parseUpdate(String input, StringBuilder response, ArrayList<Task> tasklists) {
+        String[] split = input.split(" ");
+        if (split.length != 3) {
+            response.append("\n Please enter a valid task number and description!");
+            return true;
+        }
+        int no = Integer.parseInt(split[1]);
+        String newDescription = split[2];
+
+        assert no > 0 && no <= tasklists.size() : assertMessage;
+        if (!(no > 0 && no <= tasklists.size())) {
+            throw new AssertionError(assertMessage);
+        }
+        tasklists.get(no - 1).update(newDescription);
+        response.append("\n Nice! I've updated this task")
+                .append(tasklists.get(no - 1).toString());
+        return false;
     }
 }

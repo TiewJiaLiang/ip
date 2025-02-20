@@ -48,40 +48,63 @@ public class Storage {
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
             if (line.contains("from")) {
-                line = line.substring(7);
-                String[] as = line.split("\\(from:");
-                String[] as2 = as[1].split("to:");
-                Task t = new Event(as[0].trim() + " (from: " + as2[0].trim() + " to: " + as2[1].trim());
-                if (line.substring(0 , 7).contains("X")) {
-                    t.markAsDone();
-                }
-                tasklists.add(t);
+                parseFrom(line, tasklists);
             } else {
                 if (line.contains("by")) {
-                    line = line.substring(7);
-                    String[] as = line.split("\\(by: ");
-                    String[] datetime = as[1].split(" ");
-                    String date = datetime[0];
-                    String time = datetime[1];
-                    LocalDateTime dt = LocalDateTime.parse(date);
-                    Task t = new Deadline(as[0].trim(), dt);
-                    if (line.substring(0 , 7).contains("X")) {
-                        t.markAsDone();
-                    }
-                    tasklists.add(t);
+                    parseBy(line, tasklists);
                 } else {
-                    Task t = new Todo(line.substring(7).trim());
-                    if (line.substring(0 , 7).contains("X")) {
-                        t.markAsDone();
-                    }
-                    tasklists.add(t);
+                    parse(line, tasklists);
                 }
             }
-
         }
-
         return tasklists;
+    }
 
+    /**
+     * Represents a method to parse the from prefix
+     * @param line
+     * @param tasklists
+     */
+    public void parseFrom(String line, ArrayList<Task> tasklists) {
+        line = line.substring(7);
+        String[] as = line.split("\\(from:");
+        String[] as2 = as[1].split("to:");
+        Task t = new Event(as[0].trim() + " (from: " + as2[0].trim() + " to: " + as2[1].trim());
+        if (line.substring(0 , 7).contains("X")) {
+            t.markAsDone();
+        }
+        tasklists.add(t);
+    }
 
+    /**
+     * Represents a method to parse by prefix
+     * @param line
+     * @param tasklists
+     */
+    public void parseBy(String line, ArrayList<Task> tasklists) {
+        line = line.substring(7);
+        String[] as = line.split("\\(by: ");
+        String[] datetime = as[1].split(" ");
+        String date = datetime[0];
+        String time = datetime[1];
+        LocalDateTime dt = LocalDateTime.parse(date);
+        Task t = new Deadline(as[0].trim(), dt);
+        if (line.substring(0 , 7).contains("X")) {
+            t.markAsDone();
+        }
+        tasklists.add(t);
+    }
+
+    /**
+     * Represents a methods to parse description
+     * @param line
+     * @param tasklists
+     */
+    public void parse(String line, ArrayList<Task> tasklists) {
+        Task t = new Todo(line.substring(7).trim());
+        if (line.substring(0 , 7).contains("X")) {
+            t.markAsDone();
+        }
+        tasklists.add(t);
     }
 }

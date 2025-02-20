@@ -46,7 +46,7 @@ public class WizT {
     }
 
     /**
-     * The main program execution
+     * Represents the main program execution
      * @throws WizTException
      */
     public void run() throws WizTException {
@@ -64,10 +64,6 @@ public class WizT {
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
-                if (isExit) {
-                    //writeToFile(filename , tasks.getTasksList());
-                }
-
             } catch (WizTException e) {
                 ui.showError(e.getMessage());
             } catch (IndexOutOfBoundsException e) {
@@ -78,7 +74,7 @@ public class WizT {
     }
 
     /**
-     * Write to hard disk
+     * Represents the method to write to disk
      */
     public static void writeToFile() {
         String filename = "wizt.txt";
@@ -96,13 +92,11 @@ public class WizT {
     }
 
     public static void main(String[] args) {
-        //new WizT("wizt.txt").run();
-
     }
 
 
     /**
-     * Retrieve the response for a command.
+     * Represents the retrieval the response for a command.
      * @param fullCommand The full command entered by the user.
      * @return The response message.
      * @throws WizTException if an error occurs during command execution.
