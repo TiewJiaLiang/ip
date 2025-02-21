@@ -29,7 +29,9 @@ public class Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws WizTException {
         return "Please enter a valid command! \n 1.list \n 2.mark [no.] \n 3.unmark[ no.]"
                 + "\n 4.delete [no.] \n 5.find [item] \n 6.bye \n 7.update [no.] \n 8.todo [task]"
-                + " \n 9.deadline [task][by DateTime] \n10.event[from DateTime to DateTime]";
+                + " \n 9.deadline [task][/by dd/mm/yyyy HHmm]" + "\n (e.g.deadline return book /by 19/02/2019 1800)"
+                + "\n 10.event[/from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm]"
+                + "\n (e.g event project meeting /from 19/02/2019 1800 /to 21/02/2019 1800)";
     }
 
     public boolean isExit() {

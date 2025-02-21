@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -82,17 +83,35 @@ public class Storage {
      * @param tasklists
      */
     public void parseBy(String line, ArrayList<Task> tasklists) {
-        line = line.substring(7);
-        String[] as = line.split("\\(by: ");
-        String[] datetime = as[1].split(" ");
-        String date = datetime[0];
-        String time = datetime[1];
-        LocalDateTime dt = LocalDateTime.parse(date);
-        Task t = new Deadline(as[0].trim(), dt);
-        if (line.substring(0 , 7).contains("X")) {
-            t.markAsDone();
+        try {
+            line = line.substring(7); // Remove "[D][ ] " part
+            String[] as = line.split("\\(by: ");
+            if (as.length < 2) {
+                System.out.println("Invalid input format!");
+                return;
+            }
+            String[] datetime = as[1].replace(")", "").split(":");
+            String[] dates = datetime[0].split(" ");
+            if (dates.length < 3) {
+                System.out.println("Invalid date format!");
+                return;
+            }
+            String date = dates[0];
+            String month = dates[1];
+            String year = dates[2];
+            String hour = dates[dates.length - 1];
+            String minute = datetime[1];
+            String time = hour + ":" + minute;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+            LocalDateTime dt = LocalDateTime.parse(date + " " + month + " " + year + " " + time, formatter);
+            Task t = new Deadline(as[0].trim(), dt);
+            if (line.charAt(4) == 'X') {
+                t.markAsDone();
+            }
+            tasklists.add(t);
+        } catch (Exception e) {
+            System.out.println("Error parsing deadline: " + e.getMessage());
         }
-        tasklists.add(t);
     }
 
     /**

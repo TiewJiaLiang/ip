@@ -95,8 +95,6 @@ public class AddCommand extends Command {
             if (as.length == 1) {
                 throw new WizTException("Hmm, Please enter a deadline value!");
             }
-
-            //format dd/MM/YYYY HHmm
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
             LocalDateTime dt = LocalDateTime.parse(as[1], formatter);
             Task t = new Deadline(as[0], dt);
@@ -115,27 +113,62 @@ public class AddCommand extends Command {
      * @param response
      * @throws WizTException
      */
-    public void executeEvent(ArrayList<Task>al, StringBuilder response) throws WizTException {
+    public void executeEvent(ArrayList<Task> al, StringBuilder response) throws WizTException {
         try {
-            String substr = input.substring("event".length());
+            String substr = input.substring("event".length()).trim();
             if (substr.isEmpty()) {
                 throw new WizTException("Hmm, Please enter a time period!");
             }
-            String[] as = substr.split(" /from");
-            if (as.length == 1) {
-                throw new WizTException("Hmm, Please enter a time period!");
+            String[] as = substr.split(" /from ");
+            if (as.length < 2) {
+                throw new WizTException("Hmm, Please enter a valid 'from' time!");
             }
-            String[] as2 = as[1].split(" /to");
-            if (as2.length == 1) {
-                throw new WizTException("Hmm, Please enter a time period!");
+            String[] as2 = as[1].split(" /to ");
+            if (as2.length < 2) {
+                throw new WizTException("Hmm, Please enter a valid 'to' time!");
             }
-            Task t = new Event(as[0] + " (from: " + as2[0] + " to: " + as2[1] + ")");
-            al.add(t);
-            response.append("\n Got it Boss! I've added this task:")
-                    .append("\n [E][ ] " + as[0] + " (from: " + as2[0] + " to: " + as2[1] + ")")
-                    .append("\n Now you have " + al.size() + " tasks in the list.");
+            String eventName = as[0].trim();
+            String fromStr = as2[0].trim();
+            String toStr = as2[1].trim();
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+            try {
+                parseDateTime(fromStr, toStr, eventName, al, inputFormatter, outputFormatter, response);
+            } catch (DateTimeParseException e) {
+                throw new WizTException("Hmm, Please enter a valid date format (dd/MM/yyyy HHmm)!");
+            }
         } catch (WizTException e) {
-            response.append("Hmm, Please enter a valid description!");
+            response.append("\n ").append(e.getMessage());
         }
     }
+
+    /**
+     * Represents a method to parse date time
+     * @param fromStr
+     * @param toStr
+     * @param eventName
+     * @param al
+     * @param inputFormatter
+     * @param outputFormatter
+     * @param response
+     * @throws WizTException
+     */
+    public void parseDateTime(String fromStr, String toStr, String eventName, ArrayList<Task>al,
+                              DateTimeFormatter inputFormatter, DateTimeFormatter outputFormatter,
+                              StringBuilder response) throws WizTException {
+        LocalDateTime fromTime = LocalDateTime.parse(fromStr, inputFormatter);
+        LocalDateTime toTime = LocalDateTime.parse(toStr, inputFormatter);
+        if (fromTime.isAfter(toTime)) {
+            throw new WizTException("Hmm, The 'to' date must be after the 'from' date!");
+        }
+        String formattedFromTime = fromTime.format(outputFormatter);
+        String formattedToTime = toTime.format(outputFormatter);
+        Task t = new Event(eventName + " (from: " + formattedFromTime + " to: " + formattedToTime + ")");
+        al.add(t);
+        response.append("\n Got it Boss! I've added this task:")
+                .append("\n [E][ ] " + eventName + " (from: " + formattedFromTime)
+                .append(" to: " + formattedToTime + ")")
+                .append("\n Now you have " + al.size() + " tasks in the list.");
+    }
+
 }

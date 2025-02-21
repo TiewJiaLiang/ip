@@ -31,17 +31,12 @@ public class FindCommand extends Command {
         if (split.length < 2) {
             return "Hmm,Please provide an item to search for!";
         }
-
         StringBuilder response = new StringBuilder();
         String item = split[1];
-
-        // Using stream to filter tasks and collect matching ones
         ArrayList<Task> matchingTasks = new ArrayList<>();
-
         tasks.getTasksList().stream()
                 .filter(task -> task.toString().contains(item))
                 .forEach(task -> matchingTasks.add(task));
-
         if (matchingTasks.isEmpty()) {
             response.append("\n Hmm,No such item found");
         } else {
@@ -50,7 +45,6 @@ public class FindCommand extends Command {
                 response.append("\n" + (i + 1) + "." + matchingTasks.get(i).toString());
             }
         }
-
         return response.toString();
     }
 }

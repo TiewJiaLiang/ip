@@ -33,16 +33,10 @@ public class WizT {
         storage = new Storage(filename);
         try {
             tasks = new TaskList(storage.load());
-
-
         } catch (Exception e) {
             ui.showLoadingError(e.getMessage());
-
             tasks = new TaskList();
         }
-
-
-
     }
 
     /**
@@ -57,10 +51,8 @@ public class WizT {
 
         boolean isExit = false;
         while (!isExit) {
-
             try {
                 String fullCommand = ui.readCommand();
-
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
@@ -69,7 +61,6 @@ public class WizT {
             } catch (IndexOutOfBoundsException e) {
                 ui.showError("Please enter a wizt.task.Task number!");
             }
-
         }
     }
 
@@ -84,7 +75,6 @@ public class WizT {
                 fw.write(task.toString());
                 fw.write("\n");
             }
-
             fw.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());

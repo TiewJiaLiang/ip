@@ -58,8 +58,6 @@ public class MainWindow extends AnchorPane {
         if (input.isEmpty()) {
             return;
         }
-
-
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getWiztDialog(response, wiztImage)
@@ -73,6 +71,5 @@ public class MainWindow extends AnchorPane {
             });
             pause.play();
         }
-
     }
 }

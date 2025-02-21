@@ -31,7 +31,6 @@ public class Parser {
         } else if (fullCommand.contains("find")) {
             return new FindCommand(fullCommand);
         }
-
         return new Command();
     }
 }

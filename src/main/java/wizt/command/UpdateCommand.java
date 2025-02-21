@@ -126,7 +126,6 @@ public class UpdateCommand extends Command {
         }
         int no = Integer.parseInt(split[1]);
         String newDescription = split[2];
-
         assert no > 0 && no <= tasklists.size() : assertMessage;
         if (!(no > 0 && no <= tasklists.size())) {
             throw new AssertionError(assertMessage);

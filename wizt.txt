@@ -1,7 +1,0 @@
-[T][X] sleep
-[T][X] eat
-[T][X] borrow book
-[T][ ] eats
-[T][X] nap
-[T][ ] sleeps
-[D][ ] return book (by: 19 Feb 2019 18:00)
