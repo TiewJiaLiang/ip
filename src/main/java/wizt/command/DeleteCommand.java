@@ -32,7 +32,6 @@ public class DeleteCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         StringBuilder response = new StringBuilder();
         try {
-
             String[] split = input.split(" ");
             if (split.length < 2) {
                 throw new WizTException("Hmm, Please specify the task number to delete.");
@@ -40,6 +39,9 @@ public class DeleteCommand extends Command {
             int no = Integer.parseInt(split[1]);
             ArrayList<Task> tasklists = tasks.getTasksList();
             assert no > 0 && no <= tasklists.size() : "Error! Please Choose the appropriate number from the task list";
+            if (!(no > 0 && no <= tasklists.size())) {
+                throw new WizTException("Error! Please Choose the appropriate number from the task list");
+            }
             response.append("\n Noted Boss! I've removed this task: \n")
                     .append(tasklists.get(no - 1).toString());
             tasklists.remove(no - 1);

@@ -91,7 +91,6 @@ public class AddCommand extends Command {
                 throw new WizTException("Hmm, Please enter a deadline value!");
             }
             String[] as = substr.split(" /by ");
-            System.out.println(as.length);
             if (as.length == 1) {
                 throw new WizTException("Hmm, Please enter a deadline value!");
             }
